@@ -25,3 +25,21 @@ tokentable = Table(
     Column("access_token", String, nullable=False),
     Column("owner_id", Integer, ForeignKey("user.id"))
 )
+
+stock = Table(
+    "stock",
+    metadata,
+    Column("id", Integer, primary_key=True, index=True),
+    Column("price", Integer, nullable=False),
+    Column("company", String, nullable=False),
+)
+
+
+personal_stocks = Table(
+    "personal_stocks",
+    metadata,
+    Column("id", Integer, primary_key=True, index=True),
+    Column("price", Integer, nullable=False),
+    Column("owner_id", Integer, ForeignKey("user.id")),
+    Column("stock_id", Integer, ForeignKey("stock.id"))
+)
